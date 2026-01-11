@@ -1,0 +1,27 @@
+(defsrc
+  caps tab d h j k l
+)
+
+(defvar
+  ;; Caps key timings - faster for frequent Esc usage
+  caps-tap-time 145
+  caps-hold-time 145
+  
+  ;; Tab key timings - slightly longer for layer switching
+  tab-tap-time 145
+  tab-hold-time 145
+)
+
+(defalias
+  caps (tap-hold $caps-tap-time $caps-hold-time esc lctl)
+  tab (tap-hold $tab-tap-time $tab-hold-time tab (layer-toggle arrow))
+  del del
+)
+
+(deflayer base
+  @caps @tab d h j k l
+)
+
+(deflayer arrow
+  _ _ @del left down up right
+)
